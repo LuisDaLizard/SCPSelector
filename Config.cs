@@ -13,8 +13,11 @@ namespace SCPSelector
         public bool Enabled { get; set; } = true;
         public bool Debug { get; set; } = false;
 
+        [Description("Maximum number of changes an scp can make")]
+        public int MaxChanges { get; set; } = 2;
+
         [Description("Time at the beginning of the round for players to strategize before starting")]
-        public int RoundStartTimer { get; set; } = 15;
+        public int SelectionTimer { get; set; } = 15;
 
         [Description("SCPs that cannot be chosen at the beginning of a round")]
         public RoleTypeId[] Blacklist { get; set; } =

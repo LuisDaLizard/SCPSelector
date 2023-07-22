@@ -15,8 +15,7 @@ namespace SCPSelector
 
         public static Plugin Instance { get; private set; }
 
-
-        private SelectionData Data;
+        public SelectionData Data { get; private set; }
 
 
         [PluginEntryPoint("SCP Selector", "1.0", "Allows player chosen as the scp to select their scp", "Luis T. Sanchez")]
@@ -32,7 +31,7 @@ namespace SCPSelector
         [PluginReload]
         void OnReload()
         {
-            Data = new SelectionData();
+            Data.Reset();
         }
 
         [PluginEvent(ServerEventType.PlayerSpawn)]
@@ -41,12 +40,13 @@ namespace SCPSelector
             if (player == null) return;
             if (!player.IsSCP || role == RoleTypeId.Scp0492) return;
 
+
         }
 
         [PluginEvent(ServerEventType.RoundStart)]
         void OnRoundRestart()
         {
-            Data = new SelectionData();
+            Data.Reset();
         }
     }
 }
