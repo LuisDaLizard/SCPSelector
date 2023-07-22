@@ -28,6 +28,8 @@ namespace SCPSelector
         public void RegisterSCPPlayer(Player player, RoleTypeId role)
         {
             int id = player.PlayerId;
+            if (PlayerSelections.ContainsKey(id)) return;
+
             PlayerSelections[id] = 0;
             PlayerRoles[id] = role;
         }
