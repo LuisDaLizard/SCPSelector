@@ -54,7 +54,7 @@ namespace SCPSelector.Commands
                 return false;
             }
 
-            if (!Plugin.Instance.Data.PlayerCanMakeChange(player))
+            if (!Plugin.Instance.Data.ReachedMaxChanges(player))
             {
                 response = "You've reached the maximum number of scp changes.";
                 return false;
@@ -107,13 +107,19 @@ namespace SCPSelector.Commands
                 return false;
             }
 
+            if (Plugin.Instance.Data.IsDuplicate(role))
+            {
+                response = "That SCP already taken.";
+                return false;
+            }
+
             if (player.Role == role)
             {
                 response = "Cannot change to current scp.";
                 return false;
             }
 
-            Plugin.Instance.Data.PlayerMakeChange(player, role);
+            Plugin.Instance.Data.ChangeRole(player, role);
 
             response = "Valid scp selected.";
             return true;

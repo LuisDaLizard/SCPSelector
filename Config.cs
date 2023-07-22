@@ -11,7 +11,6 @@ namespace SCPSelector
     public class Config
     {
         public bool Enabled { get; set; } = true;
-        public bool Debug { get; set; } = false;
 
         [Description("Maximum number of changes an scp can make")]
         public int MaxChanges { get; set; } = 2;

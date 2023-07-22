@@ -39,15 +39,18 @@ namespace SCPSelector
         void OnPlayerSpawn(Player player, RoleTypeId role)
         {
             if (player == null) return;
-            if (!player.IsSCP || Config.Blacklist.Contains(role)) return;
+            if (!player.IsSCP || Round.Duration.TotalSeconds >= Config.SelectionTimer) return;
 
-            player.SendBroadcast("<color=yellow><b>You have 20 seconds to change scp. Type .scpselect (scp number) to change scp.</b></color>", (ushort)Config.SelectionTimer);
+            Data.RegisterSCPPlayer(player, role);
+            player.SendBroadcast("<color=yellow><b>You have 20 seconds from the start of the round to change scp. Type .scpselect (scp number) to change scp.</b></color>", (ushort)Config.SelectionTimer, Broadcast.BroadcastFlags.Normal, true);
         }
 
         [PluginEvent(ServerEventType.RoundStart)]
-        void OnRoundRestart()
+        void OnRoundStart()
         {
             Data.Reset();
         }
+
+
     }
 }
