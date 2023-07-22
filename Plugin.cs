@@ -5,6 +5,7 @@ using PluginAPI.Enums;
 using PluginAPI.Events;
 using PlayerRoles;
 using System;
+using System.Collections;
 
 namespace SCPSelector
 {
@@ -38,9 +39,9 @@ namespace SCPSelector
         void OnPlayerSpawn(Player player, RoleTypeId role)
         {
             if (player == null) return;
-            if (!player.IsSCP || role == RoleTypeId.Scp0492) return;
+            if (!player.IsSCP || Config.Blacklist.Contains(role)) return;
 
-
+            player.SendBroadcast("<color=yellow><b>You have 20 seconds to change scp. Type .scpselect (scp number) to change scp.</b></color>", (ushort)Config.SelectionTimer);
         }
 
         [PluginEvent(ServerEventType.RoundStart)]
