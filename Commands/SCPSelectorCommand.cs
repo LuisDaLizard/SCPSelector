@@ -23,7 +23,7 @@ namespace SCPSelector.Commands
 
         public override void LoadGeneratedCommands()
         {
-            //RegisterCommand(new Restore());
+
         }
 
         protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
